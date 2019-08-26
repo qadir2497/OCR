@@ -6,30 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <Button
-        android:id="@+id/camera_open"
+        android:id="@+id/camera_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="83dp"
-        android:text="@string/scan"
+        android:layout_marginBottom="28dp"
+        android:text="camera"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/img2txt_button"
+        app:layout_constraintHorizontal_bias="0.448"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/img2txt_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
+        android:layout_marginBottom="28dp"
+        android:text="I2T"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <ImageView
-        android:id="@+id/scannedImage"
-        android:layout_width="331dp"
-        android:layout_height="361dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/camera_open"
+        android:id="@+id/Scanned_ImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/img2txt_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/common_google_signin_btn_icon_dark_normal_background" />
+        app:srcCompat="@android:drawable/ic_menu_camera" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
