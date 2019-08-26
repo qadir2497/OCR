@@ -1,7 +1,9 @@
 package com.tally.ocr;
 
+import android.content.Context;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -18,18 +20,30 @@ import java.util.List;
 
 public class TextRecognizer {
 
+    private TextRecognizer() {
+    }
+    private static Context mContext = null;
+
+    public static TextRecognizer mTextRecognizerInstance = null;
+
+    public static synchronized TextRecognizer getTextRecognizerInstance(Context context) {
+        if (mTextRecognizerInstance == null)
+            mTextRecognizerInstance = new TextRecognizer();
+        mContext = context;
+        return mTextRecognizerInstance;
+    }
+
     public void recognizeText(FirebaseVisionImage image) {
 
         FirebaseVisionTextRecognizer detector = FirebaseVision.getInstance()
-                .getOnDeviceTextRecognizer();
+                .getCloudTextRecognizer();
 
         Task<FirebaseVisionText> result =
-                detector.processImage(image)
-                        .addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
+                detector.processImage(image);
+        result.addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
                             @Override
                             public void onSuccess(FirebaseVisionText firebaseVisionText) {
-                                // Task completed successfully
-                                // ...
+                                Toast.makeText(mContext,"Image processed", Toast.LENGTH_SHORT);
                             }
                         })
                         .addOnFailureListener(

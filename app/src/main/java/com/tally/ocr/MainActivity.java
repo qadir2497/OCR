@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             scannedImage.setImageBitmap(photo);
-            //new MyFirebaseVisionImage().getImage(photo);
+            new MyFirebaseVisionImage(getApplicationContext(), photo).getImage();
         }
     }
 }
