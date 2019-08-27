@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">OCR</string>
     <string name="scan">Scan</string>
+    <string name="title_activity_entry">entryActivity</string>
 </resources>
