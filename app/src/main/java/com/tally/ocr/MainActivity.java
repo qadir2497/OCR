@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
     private static final int CAMERA_REQUEST = 1888;
-    private ImageView scannedImage;
+    private TextView sannedText;
     Button scanButton;
 
     @Override
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        scannedImage = (ImageView) this.findViewById(R.id.scannedImage);
+        sannedText = (TextView) this.findViewById(R.id.sannedText);
         scanButton = (Button) this.findViewById(R.id.camera_open);
         scanButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(cameraIntent, CAMERA_REQUEST);
                 }
+                sannedText.setText("");
             }
         });
     }
@@ -61,8 +63,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
-            scannedImage.setImageBitmap(photo);
-            new MyFirebaseVisionImage(getApplicationContext(), photo).getImage();
+            new MyFirebaseVisionImage(getApplicationContext(), photo, sannedText).getImage();
         }
     }
 }

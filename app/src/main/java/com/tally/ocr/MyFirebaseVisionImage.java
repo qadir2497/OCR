@@ -2,6 +2,7 @@ package com.tally.ocr;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.widget.TextView;
 
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 
@@ -11,11 +12,13 @@ public class MyFirebaseVisionImage {
     private Bitmap mBitmap = null;
     TextRecognizer mTextRecognizer = null;
     FirebaseVisionImage mfirebaseImage = null;
+    TextView mTextView = null;
 
-    MyFirebaseVisionImage(Context context, Bitmap bitmap) {
+    MyFirebaseVisionImage(Context context, Bitmap bitmap, TextView textView) {
         mContext = context;
         mBitmap = bitmap;
-        mTextRecognizer = TextRecognizer.getTextRecognizerInstance(mContext);
+        mTextView = textView;
+        mTextRecognizer = TextRecognizer.getTextRecognizerInstance(mContext, mTextView);
     }
 
     public void getImage() {
